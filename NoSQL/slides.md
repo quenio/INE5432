@@ -122,7 +122,7 @@ layout: false
   ### Sem SQL
   ### _Open-Source_
   ### _Clustering_
-  ### Não-ACID
+  ### Semi-ACID
   ### Sem _Schema_
 ]
 .right-column[
