@@ -155,7 +155,7 @@ layout: false
 ]
 .right-column[
 | Relacional    |    | Key-Values Stores |
-|--------------:|----|-------------------|
+|--------------:|----|:------------------|
 | Database      | -> | Cluster           |
 | Table         | -> | Bucket (Riak)     |
 | Row           | -> | Key-Value         |
@@ -250,7 +250,7 @@ layout: false
 ]
 .right-column[
 | Relacional    |    | Key-Values Stores |
-|--------------:|----|-------------------|
+|--------------:|----|:------------------|
 | Table         | -> | Collection        |
 | Row           | -> | Document          |
 | Row Id        | -> | _id (MongoDB)     |
@@ -300,7 +300,140 @@ layout: false
 ---
 layout: false
 .left-column[
-## _Document Databases_
+## _Column-Family Stores_
+]
+.right-column[
+- Armazenam tuplas
+
+    - Cada tupla pode ter campos diferentes.
+    
+    - Estrutura flexível; não é definida por _schema_.
+]
+---
+layout: false
+.left-column[
+## _Column-Family Stores_
+### Exemplos
+]
+.right-column[
+- Armazena dicionários de tuplas.
+
+    - Cada tupla pode ter campos diferentes.
+    
+    - Estrutura flexível; não é definida por _schema_.
+    
+- Exemplos:
+    
+    - Cassandra
+    
+    - HBase
+    
+    - HyperTable
+    
+    - SimpleDB
+]
+---
+layout: false
+.left-column[
+## _Column-Family Stores_
+### Exemplos
+### Terminologia
+]
+.right-column[
+| Relacional    |    | Key-Values Stores |
+|--------------:|----|:------------------|
+| Database      | -> | Keyspace          |
+| Table         | -> | Column Family     |
+| Row           | -> | Row               |
+| Column        | -> | Column (pode variar em cada Row) |
+]
+---
+layout: false
+.left-column[
+## _Column-Family Stores_
+### Exemplos
+### Terminologia
+### Casos de Uso
+]
+.right-column[
+- Casos de uso típicos:
+
+    - _Event Logging_
+    
+    - _Analytics_
+
+    - _Statistics_
+]
+---
+layout: false
+.left-column[
+## _Column-Family Stores_
+### Exemplos
+### Terminologia
+### Casos de Uso
+### Deficiências
+]
+.right-column[
+- Casos de uso típicos:
+
+    - _Event Logging_
+    
+    - _Analytics_
+
+    - _Statistics_
+
+- Deficiências:
+
+    - Dados com relacionamentos
+
+    - Transações
+        - No Cassandra, transação é atomica no nível de _rows_.
+
+    - Consistência:
+        - QUORUM: Cassandra tem não tem master; escrita e leitura em qualquer nó.
+]
+---
+layout: false
+.left-column[
+## _Graph Databases_
+]
+.right-column[
+]
+---
+layout: false
+.left-column[
+## _Graph Databases_
+### Exemplos
+]
+.right-column[
+]
+---
+layout: false
+.left-column[
+## _Graph Databases_
+### Exemplos
+### Terminologia
+]
+.right-column[
+]
+---
+layout: false
+.left-column[
+## _Graph Databases_
+### Exemplos
+### Terminologia
+### Casos de Uso
+]
+.right-column[
+]
+---
+layout: false
+.left-column[
+## _Graph Databases_
+### Exemplos
+### Terminologia
+### Casos de Uso
+### Deficiências
 ]
 .right-column[
 ]
