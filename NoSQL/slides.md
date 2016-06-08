@@ -34,18 +34,21 @@ layout: false
 
     - MongoDB tem uma linguagem de consulta baseada em JSON.
 
-    - CouchDB permite visões materializadas usando MapReduce.
+    - CouchDB permite visões materializadas usando MapReduce em JavaScript.
 
 - Porém, alguns têm linguagem de consulta baseada no SQL.
 
     - Cassandra: CQL - Cassandra Query Language
+    
+```sql
+SELECT Name, Occupation 
+    FROM People WHERE key IN (199, 200, 207);
+SELECT FIRST 3 REVERSED 'time199'..'time100' 
+    FROM Events;
+SELECT COUNT(*) FROM system.Migrations;
+```    
 ]
 
-???
-
-Pesquisar:
-- CQL
-- Visões MapReduce do CouchDB 
 ---
 layout: false
 .left-column[
@@ -62,7 +65,7 @@ layout: false
 
     - MongoDB tem uma linguagem de consulta baseada em JSON.
 
-    - CouchDB permite visões materializadas usando MapReduce.
+    - CouchDB permite visões materializadas usando MapReduce em JavaScript.
 
 - Porém, alguns têm linguagem de consulta baseada no SQL.
 
@@ -72,10 +75,6 @@ layout: false
     - Porém, já existem algumas opções comerciais.
 ]
 
-???
-
-Pesquisar:
-- Opções comerciais
 ---
 layout: false
 .left-column[
@@ -100,10 +99,6 @@ layout: false
     - Como é o caso dos Graph Databases.
 ]
     
-???
-    
-Pesquisar:
-    - Sharding
 ---
 layout: false
 .left-column[
@@ -161,10 +156,6 @@ layout: false
     
     - Tipos de operações: range, diff, union, intersection
 ]
-
-???
-
-Exemplo em código.
 
 ---
 layout: false
@@ -311,10 +302,6 @@ layout: false
 | Join          | -> | DBRef (MongoDB)    |
 ]
 
-???
-
-- Exemplo de código
-
 ---
 layout: false
 .left-column[
@@ -359,29 +346,29 @@ layout: false
 ---
 layout: false
 .left-column[
-## _Column-Family Stores_
+## _Column Stores_
 ]
 .right-column[
 - Armazena dicionários de tuplas.
+
+    - Cada tupla tem uma chave primária.
 
     - Cada tupla pode ter campos diferentes.
     
     - Estrutura flexível; não é definida por _schema_.
 ]
 
-???
-
-- Pesquisar
-
 ---
 layout: false
 .left-column[
-## _Column-Family Stores_
+## _Column Stores_
 ### Exemplos
 ]
 .right-column[
 - Armazena dicionários de tuplas.
 
+    - Cada tupla pode ter campos diferentes.
+    
     - Cada tupla pode ter campos diferentes.
     
     - Estrutura flexível; não é definida por _schema_.
@@ -390,36 +377,43 @@ layout: false
     
     - Cassandra
     
-    - HBase
+    - HBase (Hadoop)
     
     - HyperTable
     
-    - SimpleDB
+    - SimpleDB 
 ]
 ---
 layout: false
 .left-column[
-## _Column-Family Stores_
+## _Column Stores_
 ### Exemplos
 ### Terminologia
 ]
 .right-column[
-| Relacional    |    | Column-Family Stores |
+| Relacional    |    | Column Stores |
 |--------------:|----|:---------------------|
 | Database      | -> | Keyspace             |
 | Table         | -> | Column Family        |
 | Row           | -> | Row                  |
 | Column        | -> | Column (pode variar em cada Row) |
+
+```sql
+SELECT user_id, top_places 
+    FROM users 
+    WHERE user_id = 'frodo';
+
+user_id | top_places
+--------+----------------------------
+  frodo | ['the shire', 'rivendell']
+```
+
 ]
-
-???
-
-- Exemplo em código.
 
 ---
 layout: false
 .left-column[
-## _Column-Family Stores_
+## _Column Stores_
 ### Exemplos
 ### Terminologia
 ### Casos de Uso
@@ -427,45 +421,36 @@ layout: false
 .right-column[
 - Casos de uso típicos:
 
-    - _Event Logging_
-    
+    - _Sensor Data / IoT_ 
+
     - _Analytics_
 
     - _Statistics_ / _Data Analysis_
+
+    - Necessidade de Particionamento
+        
+        - A chave primária de cada tupla já define o particionamento no cluster.
 ]
-    
-    
-???
-    
-- Pesquisar
     
 ---
 layout: false
 .left-column[
-## _Column-Family Stores_
+## _Column Stores_
 ### Exemplos
 ### Terminologia
 ### Casos de Uso
 ### Deficiências
 ]
 .right-column[
-- Casos de uso típicos:
-
-    - _Event Logging_
-    
-    - _Analytics_
-
-    - _Statistics_ / _Data Analysis_
-
 - Deficiências:
 
     - Dados com relacionamentos
 
     - Transações
         - No Cassandra, transação é atomica no nível de _rows_.
+        
+        - Possui vários níveis de consistência para leitura e escrita.
 
-    - Consistência:
-        - QUORUM: Cassandra tem não tem master; escrita e leitura em qualquer nó.
 ]
 ---
 layout: false
@@ -626,6 +611,10 @@ layout: false
 - _Seven Databases in Seven Weeks_
     - Autores: Eric Redmond & Jim R. Wilson
     - Redis, Neo4J, CouchDB, MongoDB, HBase, Riak, and Postgres
+    
+- http://nosql-database.org
+    
+    - Lista bem completa dos bancos de dados NoSQL disponíveis. 
 ]
 ---
 template: inverse
