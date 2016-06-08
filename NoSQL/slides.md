@@ -17,7 +17,7 @@ layout: false
 .right-column[
 - Não seguem o modelo relacional.
 
-    - Não são padronizados no SQL.
+    - Não usam o SQL como linguagem de consulta.
 ]
 ---
 layout: false
@@ -27,18 +27,25 @@ layout: false
 ]
 .right-column[
 - Não seguem o modelo relacional.
-    - Não são padronizados no SQL.
+
+    - Não usam o SQL como linguagem de consulta.
 
 - Tem sua própria linguagem ou API para consultas.
-
-    - Porém, alguns têm linguagem de consulta baseada no SQL.
 
     - MongoDB tem uma linguagem de consulta baseada em JSON.
 
     - CouchDB permite visões materializadas usando MapReduce.
 
+- Porém, alguns têm linguagem de consulta baseada no SQL.
+
     - Cassandra: CQL - Cassandra Query Language
 ]
+
+???
+
+Pesquisar:
+- CQL
+- Visões MapReduce do CouchDB 
 ---
 layout: false
 .left-column[
@@ -48,14 +55,27 @@ layout: false
 ]
 .right-column[
 - Não seguem o modelo relacional.
-    - Não são padronizados no SQL.
+
+    - Não usam o SQL como linguagem de consulta.
 
 - Tem sua própria linguagem ou API para consultas.
-    - Porém, alguns têm linguagem de consulta baseada no SQL.
+
+    - MongoDB tem uma linguagem de consulta baseada em JSON.
+
+    - CouchDB permite visões materializadas usando MapReduce.
+
+- Porém, alguns têm linguagem de consulta baseada no SQL.
+
+    - Cassandra: CQL - Cassandra Query Language
 
 - Na maioria, projetos open-source.
     - Porém, já existem algumas opções comerciais.
 ]
+
+???
+
+Pesquisar:
+- Opções comerciais
 ---
 layout: false
 .left-column[
@@ -75,10 +95,15 @@ layout: false
 
 - Nem todos foram projetados para _Clustering_.
 
-    - Alguns focam em modelar dados mais complexos.
+    - Alguns focam na modelagem de dados mais complexos.
 
     - Como é o caso dos Graph Databases.
 ]
+    
+???
+    
+Pesquisar:
+    - Sharding
 ---
 layout: false
 .left-column[
@@ -128,7 +153,7 @@ layout: false
 ## _Key-Value Stores_
 ]
 .right-column[
-- Baseadas em tabelas _hash_
+- Baseadas em tabelas _hash_.
     
     - Para cada chave há um valor.
     
@@ -136,6 +161,11 @@ layout: false
     
     - Tipos de operações: range, diff, union, intersection
 ]
+
+???
+
+Exemplo em código.
+
 ---
 layout: false
 .left-column[
@@ -190,8 +220,12 @@ layout: false
 - Casos de uso típicos:
 
     - _Session Data_
+    
+        - Pedidos
 
     - _Caching_
+    
+        - Opções do Pedido
 ]
 ---
 layout: false
@@ -206,18 +240,21 @@ layout: false
 - Casos de uso típicos:
 
     - _Session Data_
+    
+        - Pedidos
 
     - _Caching_
     
+        - Opções do Pedido
 - Deficiências:
 
     - Dados com relacionamentos
 
     - Transações
+    
+        - Aplicação precisa implementar _locking_.
 
     - Consultas por valores ao invés de chaves
-
-    - Agregação de dados
 ]
 ---
 layout: false
@@ -270,9 +307,14 @@ layout: false
 |--------------:|----|:-------------------|
 | Table         | -> | Collection         |
 | Row           | -> | Document           |
-| Row Id        | -> | _id (MongoDB)      |
+| Row Id        | -> | _id                |
 | Join          | -> | DBRef (MongoDB)    |
 ]
+
+???
+
+- Exemplo de código
+
 ---
 layout: false
 .left-column[
@@ -326,6 +368,11 @@ layout: false
     
     - Estrutura flexível; não é definida por _schema_.
 ]
+
+???
+
+- Pesquisar
+
 ---
 layout: false
 .left-column[
@@ -364,6 +411,11 @@ layout: false
 | Row           | -> | Row                  |
 | Column        | -> | Column (pode variar em cada Row) |
 ]
+
+???
+
+- Exemplo em código.
+
 ---
 layout: false
 .left-column[
@@ -379,8 +431,14 @@ layout: false
     
     - _Analytics_
 
-    - _Statistics_
+    - _Statistics_ / _Data Analysis_
 ]
+    
+    
+???
+    
+- Pesquisar
+    
 ---
 layout: false
 .left-column[
@@ -397,7 +455,7 @@ layout: false
     
     - _Analytics_
 
-    - _Statistics_
+    - _Statistics_ / _Data Analysis_
 
 - Deficiências:
 
@@ -563,10 +621,11 @@ layout: false
 ]
 .right-column[
 - _NoSQL Distilled_
-    - Pramod J. Sadalage & Martin Fowler
+    - Autores: Pramod J. Sadalage & Martin Fowler
 
 - _Seven Databases in Seven Weeks_
-    - Eric Redmond & Jim R. Wilson
+    - Autores: Eric Redmond & Jim R. Wilson
+    - Redis, Neo4J, CouchDB, MongoDB, HBase, Riak, and Postgres
 ]
 ---
 template: inverse
