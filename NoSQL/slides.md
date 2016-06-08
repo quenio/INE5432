@@ -30,9 +30,13 @@ layout: false
     - Não são padronizados no SQL.
 
 - Tem sua própria linguagem ou API para consultas.
+
     - Porém, alguns têm linguagem de consulta baseada no SQL.
+
     - MongoDB tem uma linguagem de consulta baseada em JSON.
+
     - CouchDB permite visões materializadas usando MapReduce.
+
     - Cassandra: CQL - Cassandra Query Language
 ]
 ---
@@ -62,12 +66,17 @@ layout: false
 ]
 .right-column[
 - Muitos foram projetados para ambientes de cluster.
+
     - Máquina de pequeno porte.
+
     - Porém, suportam um número grande de máquinas distribuídas.
+
     - _Clustering_ / _Sharding_ / _Master-Slave_
 
 - Nem todos foram projetados para _Clustering_.
+
     - Alguns focam em modelar dados mais complexos.
+
     - Como é o caso dos Graph Databases.
 ]
 ---
