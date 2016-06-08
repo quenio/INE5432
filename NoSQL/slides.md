@@ -4,6 +4,7 @@ class: center, middle, inverse
 ---
 template: inverse
 # NoSQL
+.footnote[Gilherme - Quenio - Ranieri]
 ---
 template: inverse
 ## Características
@@ -15,6 +16,7 @@ layout: false
 ]
 .right-column[
 - Não seguem o modelo relacional.
+
     - Não são padronizados no SQL.
 ]
 ---
@@ -79,7 +81,9 @@ layout: false
 ]
 .right-column[
 - Opções de consistência mais fracas do que transações ACID.
+
     - Aplicações precisam garantir a integridade dos dados.
+
     - Porém mais escaláveis para aplicações Big Data.
 ]
 ---
@@ -94,11 +98,15 @@ layout: false
 ]
 .right-column[
 - Opções de consistência mais fracas do que transações ACID.
+
     - Aplicações precisam garantir a integridade dos dados.
+
     - Porém mais escaláveis para aplicações Big Data.
 
 - Não possuem _data schema_.
+
     - Permitem que campos sejam adicionados aos registros livremente.
+
     - Sem alteração prévia da estrutura de dados.
 ]
 ---
@@ -249,12 +257,12 @@ layout: false
 ### Terminologia
 ]
 .right-column[
-| Relacional    |    | Key-Values Stores |
-|--------------:|----|:------------------|
-| Table         | -> | Collection        |
-| Row           | -> | Document          |
-| Row Id        | -> | _id (MongoDB)     |
-| Join          | -> | DBRef (MongoDB)   |
+| Relacional    |    | Document Databases |
+|--------------:|----|:-------------------|
+| Table         | -> | Collection         |
+| Row           | -> | Document           |
+| Row Id        | -> | _id (MongoDB)      |
+| Join          | -> | DBRef (MongoDB)    |
 ]
 ---
 layout: false
@@ -303,7 +311,7 @@ layout: false
 ## _Column-Family Stores_
 ]
 .right-column[
-- Armazenam tuplas
+- Armazena dicionários de tuplas.
 
     - Cada tupla pode ter campos diferentes.
     
@@ -340,11 +348,11 @@ layout: false
 ### Terminologia
 ]
 .right-column[
-| Relacional    |    | Key-Values Stores |
-|--------------:|----|:------------------|
-| Database      | -> | Keyspace          |
-| Table         | -> | Column Family     |
-| Row           | -> | Row               |
+| Relacional    |    | Column-Family Stores |
+|--------------:|----|:---------------------|
+| Database      | -> | Keyspace             |
+| Table         | -> | Column Family        |
+| Row           | -> | Row                  |
 | Column        | -> | Column (pode variar em cada Row) |
 ]
 ---
@@ -398,6 +406,11 @@ layout: false
 ## _Graph Databases_
 ]
 .right-column[
+- Permitem armazenar entidades e seus relacionamentos mais complexos.
+
+    - São baseados grafos com nós e suas ligações.
+    
+    - Ambos os nodos e ligações podem ter propriedades associadas.
 ]
 ---
 layout: false
@@ -406,6 +419,19 @@ layout: false
 ### Exemplos
 ]
 .right-column[
+- Permitem armazenar entidades e seus relacionamentos mais complexos.
+
+    - São baseados grafos com nós e suas ligações.
+    
+    - Ambos os nodos e ligações podem ter propriedades associadas.
+    
+- Exemplos: 
+    
+    - Neo4J
+    
+    - Infinite Graph
+    
+    - FlockDB
 ]
 ---
 layout: false
@@ -415,6 +441,11 @@ layout: false
 ### Terminologia
 ]
 .right-column[
+| Relacional    |    | Graph Databases |
+|--------------:|----|:----------------|
+| Table Row     | -> | Node            |
+| Relation Row  | -> | Links           |
+| Column        | -> | Property        |
 ]
 ---
 layout: false
@@ -425,6 +456,18 @@ layout: false
 ### Casos de Uso
 ]
 .right-column[
+- Casos de uso típicos:
+
+    - Relacionamentos complexos de dados
+    
+    - Aplicações de roteamento
+        - Na área de transporte, por exemplo.
+        
+    - Logística
+        
+    - Localização
+        
+    - Serviços de recomendação    
 ]
 ---
 layout: false
@@ -436,7 +479,86 @@ layout: false
 ### Deficiências
 ]
 .right-column[
+- Deficiências:
+        
+    - _Bulk update_
+        
+    - _Bancos de dados muito grandes_
+        
+    - Transação / Consistência
+        - NeoJ oferece ACID no master e replicação para os slaves.
+        - Infinite Graph oferece distribuição de nós entre o cluster. 
+]
+---
+layout: false
+.left-column[
+## _SQL + Documents_
+]
+.right-column[
+- Oracle suporta JSON and XML como tipos de dados nativos
+    
+    - Provê transações, indices, consultas, views.
+
+    - Permite fazer JOIN entre tabelas e JSON + XML.
+
+    - Também permite projetas dados JSON + XML como se fossem tabelas.
+
+    - Consultar JSON + XML armazenado fora do banco de dados.
+]
+---
+layout: false
+.left-column[
+## _SQL + Documents_
+### Exemplos
+]
+.right-column[
+_Schema_:
+
+```sql
+CREATE TABLE j_purchaseorder
+   (id          RAW (16) NOT NULL,
+    date_loaded TIMESTAMP WITH TIME ZONE,
+    po_document CLOB
+    CONSTRAINT ensure_json CHECK (po_document IS JSON));
+```
+
+Inserir _JSON_:
+
+```sql
+INSERT INTO j_purchaseorder
+  VALUES (SYS_GUID(),
+          SYSTIMESTAMP,
+          '{"PONumber"             : 1600,
+            "Reference"            : "ABULL-20140421",
+            "Requestor"            : "Alexis Bull",
+            "User"                 : "ABULL",
+            "CostCenter"           : "A50",
+            "ShippingInstructions" : {...},
+            "AllowPartialShipment" : true,
+            "LineItems"            : [...]}');
+```
+
+Consultar _JSON_:
+
+```sql
+SELECT po.po_document.PONumber 
+    FROM j_purchaseorder po;
+SELECT po.po_document.ShippingInstructions.Phone 
+    FROM j_purchaseorder po;
+```
+]
+---
+layout: false
+.left-column[
+## _Referências_
+]
+.right-column[
+- _NoSQL Distilled_
+    - Pramod J. Sadalage & Martin Fowler
+
+- _Seven Databases in Seven Weeks_
+    - Eric Redmond & Jim R. Wilson
 ]
 ---
 template: inverse
-# MongoDB
+# MongoDB & Redis
