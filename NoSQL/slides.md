@@ -106,7 +106,7 @@ layout: false
   ### Sem SQL
   ### _Open-Source_
   ### _Clustering_
-  ### Não-ACID
+  ### Semi-ACID
 ]
 .right-column[
 - Opções de consistência mais fracas do que transações ACID.
