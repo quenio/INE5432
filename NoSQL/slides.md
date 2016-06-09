@@ -4,7 +4,7 @@ class: center, middle, inverse
 ---
 template: inverse
 # NoSQL
-.footnote[Gilherme - Quenio - Ranieri]
+.footnote[Guilherme - Quenio - Ranieri]
 ---
 template: inverse
 ## Características
